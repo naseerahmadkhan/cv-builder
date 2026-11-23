@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "layout": "classic",
+  "style": {
+    "font": "'JetBrains Mono', monospace",
+    "baseSize": 10,
+    "nameSize": 28,
+    "headingSize": 14,
+    "headerBg": "#232B38",
+    "headerText": "#EDEDED",
+    "accent": "#C8601A",
+    "textColor": "#111111",
+    "ruleColor": "#5A6B80",
+    "pageBreakBeforeProjects": true
+  },
+  "header": {
+    "name": "Naseer Ahmad Khan",
+    "contacts": [
+      { "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>", "text": "+92 332 4659 119" },
+      { "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-10 6L2 7\"/></svg>", "text": "naseer4uplus@gmail.com" },
+      { "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>", "text": "naseer-one" }
+    ]
+  },
+  "summary": "With hands-on experience in full-stack development, I build scalable and efficient web and mobile applications. Proficient in modern frontend technologies including React.js, React Native, and Next.js, along with backend development using Node.js, I adapt quickly to evolving technology stacks and development environments. I work extensively with databases such as MySQL, SQL Server, and MongoDB to design reliable and data-driven applications. Passionate about creating high-quality user experiences and robust backend systems, I focus on delivering maintainable and performance-oriented solutions while continuously learning and improving as a developer.",
+  "skills": [
+    { "label": "Development", "value": "Javascript, Docker, Python, SQL, Kafka, PostgreSQL" },
+    { "label": "Databases", "value": "PostgreSQL, MySQL, MSSQL, MongoDB, Redis" },
+    { "label": "Mobile App and Web", "value": "Reactjs, ReactNative, Nextjs, Nodejs" }
+  ],
+  "experience": [
+    {
+      "title": "Full-Stack Developer",
+      "company": "eData Solutions Pty Ltd.",
+      "url": "https://www.edatasolutions.com.au",
+      "dates": "15-09-2018 to Present",
+      "bullets": [
+        "Developed scalable web and mobile applications using React.js, Next.js, and React Native to deliver responsive and user-friendly interfaces.",
+        "Built RESTful APIs and backend services using Node.js, ensuring secure and efficient data processing.",
+        "Designed and optimized database schemas using PostgreSQL, MySQL, and MongoDB for high-performance data management.",
+        "Implemented containerized applications using Docker to streamline development and deployment workflows.",
+        "Integrated Kafka-based messaging systems to support asynchronous communication and scalable data processing.",
+        "Improved application performance by optimizing SQL queries and database indexing across PostgreSQL and MSSQL.",
+        "Collaborated with cross-functional teams to deliver high-quality features and maintain scalable system architecture."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project: Web Application Platform",
+      "bullets": [
+        "Built a full-stack web application using Next.js (frontend) and Node.js (backend).",
+        "Implemented secure authentication and API services with Node.js.",
+        "Designed and managed relational databases using PostgreSQL and MySQL.",
+        "Containerized the application using Docker for easier deployment and environment consistency."
+      ]
+    },
+    {
+      "name": "Project: Mobile Application",
+      "bullets": [
+        "Developed a cross-platform mobile application using React Native.",
+        "Integrated backend APIs built with Node.js and connected to MongoDB for data storage.",
+        "Optimized performance and improved user experience with responsive UI components."
+      ]
+    },
+    {
+      "name": "Project: Real-time Data Processing System",
+      "bullets": [
+        "Built a real-time data pipeline using Kafka for message streaming.",
+        "Processed and stored data in PostgreSQL and Redis for fast access and caching.",
+        "Implemented backend services in Node.js and Python to handle data processing tasks."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Computer Science",
+      "extra": "CGPA 3.26",
+      "dates": "October 2015 To March 2018",
+      "school": "University of Management and Technology, Lahore."
+    }
+  ],
+  "certifications": [
+    { "title": "Graphics Designing", "dates": "Apr 2019 to Jun 2019", "issuer": "www.digiskills.pk" },
+    { "title": "Certified Cloud Native Developer", "dates": "02/03/2021 To 31/12/2022", "issuer": "Presidential Initiative For Artificial Intelligence & Computing" },
+    { "title": "Mobile App development (React Native)", "dates": "17/01/2023 To10/04/2023", "issuer": "e-rozgaar" }
+  ]
+}

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+
+.cvb {
+  display: flex;
+  height: 100vh;
+  background: #e9ecf1;
+}
+
+.cvb-panel {
+  width: 400px;
+  flex: none;
+  overflow-y: auto;
+  padding: 16px;
+  background: #fff;
+  border-right: 1px solid #d5dae2;
+  box-sizing: border-box;
+}
+
+.cvb-stage {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+}
+
+.cvb-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(20, 30, 50, 0.18);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cvb-page ul {
+  margin-block: 0;
+}
+
+.cvb-ico {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.45em;
+}
+
+.cvb-ico svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@page {
+  size: A4;
+  margin: 10mm 0;
+}
+
+@page :first {
+  margin-top: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    background: #fff;
+  }
+
+  .cvb {
+    display: block;
+    height: auto;
+    background: #fff;
+  }
+
+  .cvb-panel {
+    display: none;
+  }
+
+  .cvb-stage {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .cvb-page {
+    box-shadow: none;
+    margin: 0;
+    width: 210mm;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .cvb {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cvb-panel {
+    width: auto;
+  }
+}
