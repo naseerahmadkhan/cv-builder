@@ -138,6 +138,33 @@ export default function CVBuilder() {
             />
             Start Projects on a new page
           </label>
+
+          <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
+            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Certifications layout</span>
+            <select
+              style={{ width: 'auto', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #cfd5de', borderRadius: 6, font: '13px system-ui, sans-serif', background: '#fff' }}
+              value={s.certificationsLayout}
+              onChange={(e) => setStyle('certificationsLayout', e.target.value)}
+            >
+              <option value="vertical">Vertical (list)</option>
+              <option value="grid-2">Grid (2 columns)</option>
+              <option value="grid-3">Grid (3 columns)</option>
+            </select>
+          </label>
+
+          {s.certificationsLayout?.startsWith('grid') && (
+            <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
+              <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Columns</span>
+              <select
+                style={{ width: 'auto', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #cfd5de', borderRadius: 6, font: '13px system-ui, sans-serif', background: '#fff' }}
+                value={s.certificationsColumns || 2}
+                onChange={(e) => setStyle('certificationsColumns', Number(e.target.value))}
+              >
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
+          )}
         </Section>
 
         <Section title="Header">
@@ -186,6 +213,44 @@ export default function CVBuilder() {
           <button style={btn} onClick={() => edit((d) => { d.header.contacts.push({ icon: ICONS.Website, text: '' }); })}>
             Add contact
           </button>
+        </Section>
+
+        <Section title="Section Icons">
+          {Object.entries(cv.sectionIcons || {}).map(([key, icon]) => (
+            <Card key={key} onRemove={() => edit((d) => { delete d.sectionIcons[key]; })}>
+              <label style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>
+                {key.charAt(0).toUpperCase() + key.slice(1)} Icon
+              </label>
+              <label>
+                <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Icon preset</span>
+                <select
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '6px 8px',
+                    border: '1px solid #cfd5de',
+                    borderRadius: 6,
+                    font: '13px system-ui, sans-serif',
+                    background: '#fff',
+                  }}
+                  value=""
+                  onChange={(e) => e.target.value && edit((d) => { d.sectionIcons[key] = ICONS[e.target.value]; })}
+                >
+                  <option value="">Choose a preset…</option>
+                  {Object.keys(ICONS).map((n) => (
+                    <option key={n} value={n}>{n}</option>
+                  ))}
+                </select>
+              </label>
+              <Field
+                label="Icon SVG code (optional)"
+                area
+                rows={3}
+                value={icon}
+                onChange={(v) => edit((d) => { d.sectionIcons[key] = v; })}
+              />
+            </Card>
+          ))}
         </Section>
 
         <Section title="Summary">
@@ -323,9 +388,37 @@ export default function CVBuilder() {
                 value={c.issuer}
                 onChange={(v) => listEdit('certifications', i, 'issuer', v)}
               />
+              <label>
+                <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Icon preset</span>
+                <select
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '6px 8px',
+                    border: '1px solid #cfd5de',
+                    borderRadius: 6,
+                    font: '13px system-ui, sans-serif',
+                    background: '#fff',
+                  }}
+                  value=""
+                  onChange={(e) => e.target.value && edit((d) => { d.certifications[i].icon = ICONS[e.target.value]; })}
+                >
+                  <option value="">Choose a preset…</option>
+                  {Object.keys(ICONS).map((n) => (
+                    <option key={n} value={n}>{n}</option>
+                  ))}
+                </select>
+              </label>
+              <Field
+                label="Icon SVG code (optional)"
+                area
+                rows={3}
+                value={c.icon || ''}
+                onChange={(v) => listEdit('certifications', i, 'icon', v)}
+              />
             </Card>
           ))}
-          <button style={btn} onClick={() => add('certifications', { title: '', dates: '', issuer: '' })}>
+          <button style={btn} onClick={() => add('certifications', { title: '', dates: '', issuer: '', icon: '' })}>
             Add certification
           </button>
         </Section>

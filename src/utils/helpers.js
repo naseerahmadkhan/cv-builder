@@ -6,7 +6,8 @@ export function cleanSvg(str = '') {
     .replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '')
     .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
-    .replace(/javascript:/gi, '');
+    .replace(/javascript:/gi, '')
+    .replace(/\s(width|height)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
 }
 
 export function linesOf(arr) {
@@ -35,6 +36,7 @@ export function merge(data, DEFAULT_CV, ICONS) {
     ...data,
     style: { ...DEFAULT_CV.style, ...(data.style || {}) },
     header: { name: h.name ?? DEFAULT_CV.header.name, contacts },
+    sectionIcons: { ...DEFAULT_CV.sectionIcons, ...(data.sectionIcons || {}) },
     customSections: data.customSections ?? DEFAULT_CV.customSections ?? [],
   };
 }

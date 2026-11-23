@@ -11,7 +11,9 @@
     "accent": "#C8601A",
     "textColor": "#111111",
     "ruleColor": "#5A6B80",
-    "pageBreakBeforeProjects": true
+    "pageBreakBeforeProjects": true,
+    "certificationsLayout": "vertical",
+    "certificationsColumns": 2
   },
   "header": {
     "name": "Naseer Ahmad Khan",
@@ -20,6 +22,14 @@
       { "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-10 6L2 7\"/></svg>", "text": "naseer4uplus@gmail.com" },
       { "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>", "text": "naseer-one" }
     ]
+  },
+  "sectionIcons": {
+    "summary": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/></svg>",
+    "skills": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 18 2 12 8 6\"/></svg>",
+    "experience": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>",
+    "projects": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><path d=\"M8 21h8\"/><path d=\"M12 17v4\"/></svg>",
+    "education": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 10v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10\"/><path d=\"M6 12v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5\"/><path d=\"M12 2l10 7-10 7-10-7 10-7z\"/><path d=\"M2 17l10-7 10 7\"/></svg>",
+    "certifications": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><polyline points=\"14 2 14 8 20 8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/><path d=\"M10 9H8\"/></svg>"
   },
   "summary": "With hands-on experience in full-stack development, I build scalable and efficient web and mobile applications. Proficient in modern frontend technologies including React.js, React Native, and Next.js, along with backend development using Node.js, I adapt quickly to evolving technology stacks and development environments. I work extensively with databases such as MySQL, SQL Server, and MongoDB to design reliable and data-driven applications. Passionate about creating high-quality user experiences and robust backend systems, I focus on delivering maintainable and performance-oriented solutions while continuously learning and improving as a developer.",
   "skills": [
@@ -80,9 +90,9 @@
     }
   ],
   "certifications": [
-    { "title": "Graphics Designing", "dates": "Apr 2019 to Jun 2019", "issuer": "www.digiskills.pk" },
-    { "title": "Certified Cloud Native Developer", "dates": "02/03/2021 To 31/12/2022", "issuer": "Presidential Initiative For Artificial Intelligence & Computing" },
-    { "title": "Mobile App development (React Native)", "dates": "17/01/2023 To10/04/2023", "issuer": "e-rozgaar" }
+    { "title": "Graphics Designing", "dates": "Apr 2019 to Jun 2019", "issuer": "www.digiskills.pk", "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><circle cx=\"8\" cy=\"8\" r=\"2\"/><path d=\"M14 14l4 4\"/><path d=\"M18 10l-4 4\"/></svg>" },
+    { "title": "Certified Cloud Native Developer", "dates": "02/03/2021 To 31/12/2022", "issuer": "Presidential Initiative For Artificial Intelligence & Computing", "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 13.5A9 9 0 1 0 6 5.5a4.5 4.5 0 0 1 12 0z\"/><path d=\"M12 17v4\"/><path d=\"M8 21h8\"/></svg>" },
+    { "title": "Mobile App development (React Native)", "dates": "17/01/2023 To10/04/2023", "issuer": "e-rozgaar", "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/></svg>" }
   ],
   "customSections": []
 }

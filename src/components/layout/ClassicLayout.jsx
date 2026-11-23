@@ -1,6 +1,6 @@
 import { cleanSvg } from '../../utils/helpers.js';
 
-function H({ children, mt = 14, s }) {
+function H({ children, mt = 14, s, icon }) {
   return (
     <h2
       style={{
@@ -9,8 +9,14 @@ function H({ children, mt = 14, s }) {
         fontSize: `${s.headingSize}pt`,
         fontWeight: 700,
         breakAfter: 'avoid',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
       }}
     >
+      {icon && cleanSvg(icon) && (
+        <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(icon) }} />
+      )}
       {children}
     </h2>
   );
@@ -92,7 +98,7 @@ export default function ClassicLayout({ cv }) {
       <div style={{ padding: MARGIN, paddingTop: '9mm' }}>
         {cv.summary && (
           <>
-            <H mt={0} s={s}>Summary</H>
+            <H mt={0} s={s} icon={cv.sectionIcons?.summary}>Summary</H>
             <p
               style={{
                 margin: 0,
@@ -110,7 +116,7 @@ export default function ClassicLayout({ cv }) {
 
         {cv.skills.length > 0 && (
           <>
-            <H s={s}>Skills</H>
+            <H s={s} icon={cv.sectionIcons?.skills}>Skills</H>
             <table style={{ borderCollapse: 'collapse', lineHeight: 1.5 }}>
               <tbody>
                 {cv.skills.map((k, i) => (
@@ -135,7 +141,7 @@ export default function ClassicLayout({ cv }) {
           </>
         )}
 
-        {cv.experience.length > 0 && <H s={s}>Experience</H>}
+        {cv.experience.length > 0 && <H s={s} icon={cv.sectionIcons?.experience}>Experience</H>}
         {cv.experience.map((e, i) => (
           <div key={i} style={{ marginBottom: 8 }}>
             <Block s={s} rows={[e.title, e.company, e.url, e.dates]} />
@@ -145,7 +151,7 @@ export default function ClassicLayout({ cv }) {
 
         {cv.projects.length > 0 && (
           <div style={{ breakBefore: s.pageBreakBeforeProjects ? 'page' : 'auto' }}>
-            <H mt={s.pageBreakBeforeProjects ? 0 : 14} s={s}>
+            <H mt={s.pageBreakBeforeProjects ? 0 : 14} s={s} icon={cv.sectionIcons?.projects}>
               Projects
             </H>
             <ul style={{ margin: 0, paddingLeft: '6mm', lineHeight: 1.45 }}>
@@ -159,7 +165,7 @@ export default function ClassicLayout({ cv }) {
           </div>
         )}
 
-        {cv.education.length > 0 && <H s={s}>Education</H>}
+        {cv.education.length > 0 && <H s={s} icon={cv.sectionIcons?.education}>Education</H>}
         {cv.education.map((e, i) => (
           <Block
             key={i}
@@ -168,10 +174,45 @@ export default function ClassicLayout({ cv }) {
           />
         ))}
 
-        {cv.certifications.length > 0 && <H s={s}>Certifications</H>}
-        {cv.certifications.map((c, i) => (
-          <Block key={i} s={s} rows={[c.title, c.dates, c.issuer]} />
-        ))}
+        {cv.certifications.length > 0 && <H s={s} icon={cv.sectionIcons?.certifications}>Certifications</H>}
+        {cv.certifications.length > 0 && (
+          <div
+            style={{
+              display: s.certificationsLayout?.startsWith('grid') ? 'grid' : 'block',
+              gridTemplateColumns: s.certificationsLayout?.startsWith('grid')
+                ? `repeat(${s.certificationsColumns || 2}, 1fr)`
+                : undefined,
+              gap: s.certificationsLayout?.startsWith('grid') ? '12px' : 0,
+            }}
+          >
+            {cv.certifications.map((c, i) => (
+              <div key={i} style={{ breakInside: 'avoid' }}>
+                {s.certificationsLayout?.startsWith('grid') && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                    {c.icon && (
+                      <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(c.icon) }} />
+                    )}
+                    <span style={{ fontWeight: 700 }} dangerouslySetInnerHTML={{ __html: c.title }} />
+                  </div>
+                )}
+                {!s.certificationsLayout?.startsWith('grid') && (
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px' }}>
+                    {c.icon && (
+                      <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(c.icon) }} />
+                    )}
+                    <Block s={s} rows={[c.title, c.dates, c.issuer]} />
+                  </div>
+                )}
+                {s.certificationsLayout?.startsWith('grid') && (
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: c.dates }} style={{ fontSize: '0.9em', color: '#666', marginBottom: '2px' }} />
+                    <div dangerouslySetInnerHTML={{ __html: c.issuer }} style={{ fontSize: '0.9em', color: '#666' }} />
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
 
         {cv.customSections?.map((section, i) => (
           <div key={i} style={{ marginTop: 14 }}>
