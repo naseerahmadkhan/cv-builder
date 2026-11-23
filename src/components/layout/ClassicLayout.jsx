@@ -27,9 +27,7 @@ function Bullets({ items, sub }) {
       }}
     >
       {items.map((b, i) => (
-        <li key={i} style={{ breakInside: 'avoid' }}>
-          {b}
-        </li>
+        <li key={i} style={{ breakInside: 'avoid' }} dangerouslySetInnerHTML={{ __html: b }} />
       ))}
     </ul>
   );
@@ -45,7 +43,9 @@ function Block({ rows }) {
         breakInside: 'avoid',
       }}
     >
-      {rows.map((r, i) => r && <div key={i}>{r}</div>)}
+      {rows.map((r, i) => r && (
+        <div key={i} dangerouslySetInnerHTML={{ __html: r }} />
+      ))}
     </div>
   );
 }
@@ -98,11 +98,12 @@ export default function ClassicLayout({ cv }) {
                 margin: 0,
                 paddingBottom: 8,
                 lineHeight: 1.5,
-                whiteSpace: 'pre-wrap',
                 borderBottom: `1.5px solid ${s.ruleColor}`,
               }}
             >
-              {cv.summary}
+              {cv.summary.split('\n').map((line, idx) => (
+                <span key={idx} dangerouslySetInnerHTML={{ __html: line }} />
+              ))}
             </p>
           </>
         )}
@@ -170,6 +171,25 @@ export default function ClassicLayout({ cv }) {
         {cv.certifications.length > 0 && <H s={s}>Certifications</H>}
         {cv.certifications.map((c, i) => (
           <Block key={i} s={s} rows={[c.title, c.dates, c.issuer]} />
+        ))}
+
+        {cv.customSections?.map((section, i) => (
+          <div key={i} style={{ marginTop: 14 }}>
+            <H s={s}>{section.title}</H>
+            {section.content && (
+              <p style={{ margin: '0 0 8px', lineHeight: 1.5 }}>
+                {section.content.split('\n').map((line, idx) => (
+                  <span key={idx} dangerouslySetInnerHTML={{ __html: line }} />
+                ))}
+              </p>
+            )}
+            {section.bullets?.length > 0 && (
+              <Bullets items={section.bullets} />
+            )}
+            {section.items?.map((item, j) => (
+              <Block key={j} rows={item.rows} />
+            ))}
+          </div>
         ))}
       </div>
     </div>

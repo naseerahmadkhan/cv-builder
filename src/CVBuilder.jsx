@@ -330,6 +330,35 @@ export default function CVBuilder() {
           </button>
         </Section>
 
+        <Section title="Custom Sections">
+          {cv.customSections?.map((sec, i) => (
+            <Card key={i} onRemove={() => remove('customSections', i)}>
+              <Field
+                label="Section Title"
+                value={sec.title}
+                onChange={(v) => listEdit('customSections', i, 'title', v)}
+              />
+              <Field
+                label="Content (paragraph)"
+                area
+                rows={3}
+                value={sec.content || ''}
+                onChange={(v) => listEdit('customSections', i, 'content', v)}
+              />
+              <Field
+                label="Bullets (one per line)"
+                area
+                rows={5}
+                value={linesOf(sec.bullets || [])}
+                onChange={(v) => listEdit('customSections', i, 'bullets', toLines(v))}
+              />
+            </Card>
+          ))}
+          <button style={btn} onClick={() => add('customSections', { title: '', content: '', bullets: [] })}>
+            Add custom section
+          </button>
+        </Section>
+
         <button
           style={{ ...btn, marginTop: 14 }}
           onClick={() => {

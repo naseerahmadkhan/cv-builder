@@ -83,5 +83,6 @@
     { "title": "Graphics Designing", "dates": "Apr 2019 to Jun 2019", "issuer": "www.digiskills.pk" },
     { "title": "Certified Cloud Native Developer", "dates": "02/03/2021 To 31/12/2022", "issuer": "Presidential Initiative For Artificial Intelligence & Computing" },
     { "title": "Mobile App development (React Native)", "dates": "17/01/2023 To10/04/2023", "issuer": "e-rozgaar" }
-  ]
+  ],
+  "customSections": []
 }

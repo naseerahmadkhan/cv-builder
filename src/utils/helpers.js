@@ -35,5 +35,6 @@ export function merge(data, DEFAULT_CV, ICONS) {
     ...data,
     style: { ...DEFAULT_CV.style, ...(data.style || {}) },
     header: { name: h.name ?? DEFAULT_CV.header.name, contacts },
+    customSections: data.customSections ?? DEFAULT_CV.customSections ?? [],
   };
 }

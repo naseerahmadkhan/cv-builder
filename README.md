@@ -69,6 +69,15 @@ Replace `src/data/defaultCV.json` with your own exported JSON file. The `default
 2. Register it in `src/data/layouts.js`
 3. It will appear in the Layout dropdown automatically
 
+## Custom Sections
+
+After Certifications, you can add unlimited custom sections. Each section supports:
+- **Title** - Section heading
+- **Content** - Free-form paragraph text
+- **Bullets** - Bullet-point list (one per line)
+
+Use the "Add custom section" button in the sidebar to create new sections.
+
 ## Tech Stack
 
 - React 19 + Vite 8
