@@ -62,7 +62,7 @@ export default function ClassicLayout({ cv }) {
   const MARGIN = '0 16mm';
 
   return (
-    <div style={{ fontFamily: s.font, fontSize: pt(s.baseSize), color: s.textColor, paddingBottom: '10mm' }}>
+    <div style={{ fontFamily: s.font, fontSize: pt(s.baseSize), color: s.textColor, paddingBottom: '5mm' }}>
       <div
         style={{
           background: s.headerBg,
