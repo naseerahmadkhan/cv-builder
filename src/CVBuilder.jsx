@@ -17,7 +17,7 @@ const btn = {
   cursor: 'pointer',
 };
 
-const btnMain = { ...btn, background: DEFAULT_STYLE.headerBg, color: '#fff', borderColor: DEFAULT_STYLE.headerBg };
+const btnMain = { ...btn, background: DEFAULT_STYLE.headerBg, color: UI.bg, borderColor: DEFAULT_STYLE.headerBg };
 
 // Shared UI styles
 const lbl = {
