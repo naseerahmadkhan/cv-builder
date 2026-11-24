@@ -1,240 +1,42 @@
-import { cleanSvg } from '../../utils/helpers.js';
+import { CLASSIC_LAYOUT as L, DEFAULT_STYLE } from '../../constants';
+import { mm, pt } from '../../utils';
+import { CertificationsSection } from './classic/CertificationsSection.jsx';
+import { CustomSections } from './classic/CustomSections.jsx';
+import { EducationSection } from './classic/EducationSection.jsx';
+import { ExperienceSection } from './classic/ExperienceSection.jsx';
+import { HeaderBanner } from './classic/HeaderBanner.jsx';
+import { ProjectsSection } from './classic/ProjectsSection.jsx';
+import { SkillsSection } from './classic/SkillsSection.jsx';
+import { SummarySection } from './classic/SummarySection.jsx';
 
-function H({ children, mt = 14, s, icon }) {
-  return (
-    <h2
-      style={{
-        margin: `${mt}px 0 6px`,
-        color: s.accent,
-        fontSize: `${s.headingSize}pt`,
-        fontWeight: 700,
-        breakAfter: 'avoid',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-      }}
-    >
-      {icon && cleanSvg(icon) && (
-        <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(icon) }} />
-      )}
-      {children}
-    </h2>
-  );
-}
+/**
+ * Classic A4 layout: dark header banner followed by the sections in a fixed order.
+ * All sizes and colors come from `cv.style`; fixed measurements live in CLASSIC_LAYOUT.
+ */
+export default function ClassicLayout({ cv }) {
+  const style = cv.style;
 
-function Bullets({ items, sub }) {
-  return (
-    <ul
-      style={{
-        margin: 0,
-        paddingLeft: '6mm',
-        listStyle: sub ? 'circle' : 'disc',
-        lineHeight: 1.45,
-      }}
-    >
-      {items.map((b, i) => (
-        <li key={i} style={{ breakInside: 'avoid' }} dangerouslySetInnerHTML={{ __html: b }} />
-      ))}
-    </ul>
-  );
-}
-
-function Block({ rows }) {
   return (
     <div
       style={{
-        fontWeight: 700,
-        lineHeight: 1.5,
-        marginBottom: 6,
-        breakInside: 'avoid',
+        fontFamily: style.font,
+        fontSize: pt(style.baseSize),
+        color: style.textColor,
+        // `??` so a deliberate 0 is respected instead of snapping back to the default.
+        paddingBottom: mm(style.contentPaddingBottom ?? DEFAULT_STYLE.contentPaddingBottom),
+        textAlign: style.justifyText ? 'justify' : 'left',
       }}
     >
-      {rows.map((r, i) => r && (
-        <div key={i} dangerouslySetInnerHTML={{ __html: r }} />
-      ))}
-    </div>
-  );
-}
+      <HeaderBanner header={cv.header} style={style} />
 
-export default function ClassicLayout({ cv }) {
-  const s = cv.style;
-  const pt = (n) => `${n}pt`;
-  const MARGIN = '0 16mm';
-  const headerPaddingTop = `${s.headerPaddingTop || 10}mm`;
-  const headerPaddingBottom = `${s.headerPaddingBottom || 7}mm`;
-  const contentPaddingBottom = `${s.contentPaddingBottom || 5}mm`;
-
-  return (
-    <div style={{ fontFamily: s.font, fontSize: pt(s.baseSize), color: s.textColor, paddingBottom: contentPaddingBottom, textAlign: s.justifyText ? 'justify' : 'left' }}>
-      <div
-        style={{
-          background: s.headerBg,
-          color: s.headerText,
-          textAlign: 'center',
-          padding: `${headerPaddingTop} 8mm ${headerPaddingBottom}`,
-        }}
-      >
-        <div style={{ fontSize: pt(s.nameSize), fontWeight: 700, lineHeight: 1.2 }}>
-          {cv.header.name}
-        </div>
-        <div
-          style={{
-            fontSize: pt(s.baseSize + 1),
-            marginTop: 6,
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '2mm 8mm',
-          }}
-        >
-          {cv.header.contacts.map((c, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center' }}>
-              {cleanSvg(c.icon) && (
-                <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(c.icon) }} />
-              )}
-              {c.text}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ padding: MARGIN, paddingTop: '9mm' }}>
-        {cv.summary && (
-          <>
-            <H mt={0} s={s} icon={cv.sectionIcons?.summary}>Summary</H>
-            <p
-              style={{
-                margin: 0,
-                paddingBottom: 8,
-                lineHeight: 1.5,
-                borderBottom: `1.5px solid ${s.ruleColor}`,
-              }}
-            >
-              {cv.summary.split('\n').map((line, idx) => (
-                <span key={idx} dangerouslySetInnerHTML={{ __html: line }} />
-              ))}
-            </p>
-          </>
-        )}
-
-        {cv.skills.length > 0 && (
-          <>
-            <H s={s} icon={cv.sectionIcons?.skills}>Skills</H>
-            <table style={{ borderCollapse: 'collapse', lineHeight: 1.5 }}>
-              <tbody>
-                {cv.skills.map((k, i) => (
-                  <tr key={i}>
-                    <td
-                      style={{
-                        padding: 0,
-                        fontWeight: 700,
-                        fontSize: pt(s.baseSize + 1),
-                        paddingRight: '6mm',
-                        verticalAlign: 'top',
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {k.label}
-                    </td>
-                    <td style={{ padding: 0 }}>{k.value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
-
-        {cv.experience.length > 0 && <H s={s} icon={cv.sectionIcons?.experience}>Experience</H>}
-        {cv.experience.map((e, i) => (
-          <div key={i} style={{ marginBottom: 8 }}>
-            <Block s={s} rows={[e.title, e.company, e.url, e.dates]} />
-            <Bullets s={s} items={e.bullets} />
-          </div>
-        ))}
-
-        {cv.projects.length > 0 && (
-          <div style={{ breakBefore: s.pageBreakBeforeProjects ? 'page' : 'auto' }}>
-            <H mt={s.pageBreakBeforeProjects ? 0 : 14} s={s} icon={cv.sectionIcons?.projects}>
-              Projects
-            </H>
-            <ul style={{ margin: 0, paddingLeft: '6mm', lineHeight: 1.45 }}>
-              {cv.projects.map((p, i) => (
-                <li key={i} style={{ breakInside: 'avoid' }}>
-                  {p.name}
-                  <Bullets s={s} items={p.bullets} sub />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {cv.education.length > 0 && <H s={s} icon={cv.sectionIcons?.education}>Education</H>}
-        {cv.education.map((e, i) => (
-          <Block
-            key={i}
-            s={s}
-            rows={[e.extra ? `${e.degree}      ${e.extra}` : e.degree, e.dates, e.school]}
-          />
-        ))}
-
-        {cv.certifications.length > 0 && <H s={s} icon={cv.sectionIcons?.certifications}>Certifications</H>}
-        {cv.certifications.length > 0 && (
-          <div
-            style={{
-              display: s.certificationsLayout?.startsWith('grid') ? 'grid' : 'block',
-              gridTemplateColumns: s.certificationsLayout?.startsWith('grid')
-                ? `repeat(${s.certificationsColumns || 2}, 1fr)`
-                : undefined,
-              gap: s.certificationsLayout?.startsWith('grid') ? '12px' : 0,
-            }}
-          >
-            {cv.certifications.map((c, i) => (
-              <div key={i} style={{ breakInside: 'avoid' }}>
-                {s.certificationsLayout?.startsWith('grid') && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                    {c.icon && (
-                      <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(c.icon) }} />
-                    )}
-                    <span style={{ fontWeight: 700 }} dangerouslySetInnerHTML={{ __html: c.title }} />
-                  </div>
-                )}
-                {!s.certificationsLayout?.startsWith('grid') && (
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px' }}>
-                    {c.icon && (
-                      <span className="cvb-ico" dangerouslySetInnerHTML={{ __html: cleanSvg(c.icon) }} />
-                    )}
-                    <Block s={s} rows={[c.title, c.dates, c.issuer]} />
-                  </div>
-                )}
-                {s.certificationsLayout?.startsWith('grid') && (
-                  <>
-                    <div dangerouslySetInnerHTML={{ __html: c.dates }} style={{ fontSize: '0.9em', color: '#666', marginBottom: '2px' }} />
-                    <div dangerouslySetInnerHTML={{ __html: c.issuer }} style={{ fontSize: '0.9em', color: '#666' }} />
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {cv.customSections?.map((section, i) => (
-          <div key={i} style={{ marginTop: 14 }}>
-            <H s={s}>{section.title}</H>
-            {section.content && (
-              <p style={{ margin: '0 0 8px', lineHeight: 1.5 }}>
-                {section.content.split('\n').map((line, idx) => (
-                  <span key={idx} dangerouslySetInnerHTML={{ __html: line }} />
-                ))}
-              </p>
-            )}
-            {section.bullets?.length > 0 && (
-              <Bullets items={section.bullets} />
-            )}
-            {section.items?.map((item, j) => (
-              <Block key={j} rows={item.rows} />
-            ))}
-          </div>
-        ))}
+      <div style={{ padding: `0 ${L.contentSidePadding}`, paddingTop: L.contentTopPadding }}>
+        <SummarySection cv={cv} style={style} />
+        <SkillsSection cv={cv} style={style} />
+        <ExperienceSection cv={cv} style={style} />
+        <ProjectsSection cv={cv} style={style} />
+        <EducationSection cv={cv} style={style} />
+        <CertificationsSection cv={cv} style={style} />
+        <CustomSections cv={cv} style={style} />
       </div>
     </div>
   );

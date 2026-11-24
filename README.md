@@ -15,33 +15,58 @@ A React-based CV/Resume builder with live preview and PDF export. Edit your CV i
 
 ```
 src/
-├── components/
-│   ├── layout/
-│   │   ├── ClassicLayout.jsx    # Print layout (A4, dark header)
-│   │   └── index.js
-│   ├── editor/
-│   │   ├── Field.jsx            # Text/textarea input
-│   │   ├── Num.jsx              # Number input
-│   │   ├── Color.jsx            # Color picker
-│   │   ├── Section.jsx          # Collapsible section
-│   │   ├── Card.jsx             # Removable item card
-│   │   └── index.js
+├── constants/                   # Every hard-coded value lives here
+│   ├── app.js                   # Storage key, export settings, user-facing messages
+│   ├── editor.js                # Style-control config, textarea sizes, "add item" templates
+│   ├── layout.js                # Measurements for the printed Classic layout
+│   ├── sections.js              # CV section keys and headings
+│   ├── style.js                 # DEFAULT_STYLE, fonts, color presets, certification layouts
+│   ├── ui.js                    # Editor sidebar colors, fonts, radii
 │   └── index.js
 ├── data/
 │   ├── defaultCV.json           # Default CV content (replace to change defaults)
-│   ├── defaultCV.js             # Loads JSON, maps icon strings to ICONS objects
-│   ├── icons.js                 # SVG icon definitions
-│   ├── fonts.js                 # Font options
-│   └── layouts.js               # Layout registry
+│   ├── defaultCV.js             # Merges the JSON with DEFAULT_STYLE
+│   └── icons.js                 # SVG icon presets
+├── hooks/
+│   └── useCV.js                 # CV state, auto-save and edit helpers
 ├── utils/
-│   ├── helpers.js               # cleanSvg, merge, linesOf, toLines
-│   └── storage.js               # localStorage helpers
+│   ├── cv.js                    # mergeWithDefaults, setIn/getIn
+│   ├── file.js                  # JSON download / file reading
+│   ├── storage.js               # localStorage load/save
+│   ├── svg.js                   # cleanSvg (sanitizes pasted icons)
+│   ├── text.js                  # linesOf / toLines
+│   └── units.js                 # pt() / mm()
+├── components/
+│   ├── common/                  # SvgIcon, Html, HtmlLines
+│   ├── editor/                  # Sidebar
+│   │   ├── panels/              # One file per sidebar section (Style, Header, Skills...)
+│   │   ├── EditorPanel.jsx      # Assembles toolbar + panels
+│   │   ├── Toolbar.jsx          # Export PDF / Save JSON / Load JSON
+│   │   ├── ListSection.jsx      # Reusable "list of cards + Add button" section
+│   │   ├── Field, NumberField, ColorField, SelectField, CheckboxField, IconPicker
+│   │   ├── Button, Card, Section
+│   │   └── styles.js            # Shared input/button styles
+│   └── layout/                  # Printed CV
+│       ├── classic/             # One component per CV section
+│       ├── ClassicLayout.jsx    # Assembles the Classic layout
+│       ├── CVLayout.jsx         # Picks a layout from cv.layout
+│       └── layouts.js           # Layout registry
+├── pages/
+│   └── CVBuilder.jsx            # Editor + live preview
 ├── styles/
-│   └── cvBuilder.css            # All styles
-├── CVBuilder.jsx                # Main component
+│   └── cvBuilder.css            # Fonts, app shell, print rules
 ├── App.jsx
 └── main.jsx
 ```
+
+### Conventions
+
+- **Constants first.** Colors, sizes, spacing, storage keys, option lists and
+  user-facing messages go in `src/constants/`; components import them.
+  Labels that belong to a single input stay next to that input.
+- **Edit by path.** Panels call `actions.setValue(['experience', 0, 'title'], value)`,
+  `addItem`, `removeItem` and `removeKey` from `useCV` instead of cloning state themselves.
+- **One component per file**, with a short comment saying what it renders.
 
 ## Getting Started
 
@@ -61,12 +86,12 @@ npm run dev
 
 ## Customizing Default CV
 
-Replace `src/data/defaultCV.json` with your own exported JSON file. The `defaultCV.js` loader automatically maps icon SVG strings to the internal `ICONS` objects.
+Replace `src/data/defaultCV.json` with your own exported JSON file. Any style keys missing from it are filled in from `DEFAULT_STYLE` in `src/constants/style.js`.
 
 ## Adding New Layouts
 
 1. Create a new layout component in `src/components/layout/`
-2. Register it in `src/data/layouts.js`
+2. Register it in `src/components/layout/layouts.js`
 3. It will appear in the Layout dropdown automatically
 
 ## Custom Sections

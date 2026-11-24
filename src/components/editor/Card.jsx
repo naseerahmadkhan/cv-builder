@@ -1,22 +1,22 @@
-import { UI } from '../../data/constants.js';
+import { UI, UI_RADIUS } from '../../constants';
+import { Button } from './Button.jsx';
 
-const btnSm = {
-  padding: '3px 8px',
-  fontSize: 12,
-  border: `1px solid ${UI.borderDark}`,
-  borderRadius: 6,
-  background: UI.bg,
-  font: '13px system-ui, sans-serif',
-  cursor: 'pointer',
-};
-
+/** Boxed group of fields for one list item, with a Remove button. */
 export function Card({ children, onRemove }) {
   return (
-    <div style={{ border: `1px solid ${UI.divider}`, borderRadius: 8, padding: '4px 10px 10px', margin: '8px 0', background: UI.bgPanel }}>
+    <div
+      style={{
+        border: `1px solid ${UI.divider}`,
+        borderRadius: UI_RADIUS.card,
+        padding: '4px 10px 10px',
+        margin: '8px 0',
+        background: UI.bgPanel,
+      }}
+    >
       {children}
-      <button style={{ ...btnSm, marginTop: 8 }} onClick={onRemove}>
+      <Button variant="small" style={{ marginTop: 8 }} onClick={onRemove}>
         Remove
-      </button>
+      </Button>
     </div>
   );
 }

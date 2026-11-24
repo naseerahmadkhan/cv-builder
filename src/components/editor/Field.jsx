@@ -1,40 +1,26 @@
-import { UI } from '../../data/constants.js';
+import { inputStyle, labelStyle } from './styles.js';
 
-const lbl = {
-  display: 'block',
-  fontFamily: 'system-ui, sans-serif',
-  fontSize: 12,
-  color: UI.labelColor,
-  margin: '8px 0 3px',
-};
-
-const inp = {
-  width: '100%',
-  boxSizing: 'border-box',
-  padding: '6px 8px',
-  border: `1px solid ${UI.border}`,
-  borderRadius: 6,
-  font: '13px system-ui, sans-serif',
-  background: UI.bg,
-};
-
-export function Field({ label, value, onChange, area, rows = 3 }) {
+/**
+ * Labelled text input, or textarea when `area` is set.
+ * @param {string} label
+ * @param {string} value
+ * @param {(value: string) => void} onChange
+ * @param {boolean} [area] - Render a multi-line textarea
+ * @param {number} [rows] - Textarea height in rows
+ */
+export function Field({ label, value, onChange, area = false, rows = 3 }) {
   return (
     <label>
-      <span style={lbl}>{label}</span>
+      <span style={labelStyle}>{label}</span>
       {area ? (
         <textarea
-          style={{ ...inp, resize: 'vertical' }}
+          style={{ ...inputStyle, resize: 'vertical' }}
           rows={rows}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
       ) : (
-        <input
-          style={inp}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
+        <input style={inputStyle} value={value} onChange={(e) => onChange(e.target.value)} />
       )}
     </label>
   );

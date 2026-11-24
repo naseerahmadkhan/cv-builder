@@ -1,1 +1,2 @@
-export { default as ClassicLayout } from './ClassicLayout.jsx';
+export { CVLayout } from './CVLayout.jsx';
+export { LAYOUTS } from './layouts.js';

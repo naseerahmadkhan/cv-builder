@@ -1,9 +1,5 @@
-import CVBuilder from './CVBuilder'
-function App() {
+import CVBuilder from './pages/CVBuilder.jsx';
 
-  return (
-    <CVBuilder/>
-  )
+export default function App() {
+  return <CVBuilder />;
 }
-
-export default App
