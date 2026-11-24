@@ -1,5 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+/* Local font definitions — no external requests. */
 
+/* JetBrains Mono — static woff2 files for regular (400) and bold (700). */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+/* Inter — static woff2 files for regular (400) and bold (700). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter-Bold.woff2') format('woff2');
+}
+
+/* Merriweather — variable TTF covers all weights (300–900) and optical sizes. */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 300 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('/fonts/Merriweather-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 300 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url('/fonts/Merriweather-Italic-Variable.ttf') format('truetype');
+}
+
+/* Base reset — the editor fills the viewport, the preview sits inside a centered stage. */
 html, body {
   height: 100%;
   overflow: hidden;
