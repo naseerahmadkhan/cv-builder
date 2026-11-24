@@ -16,16 +16,16 @@ const inp = {
   background: '#fff',
 };
 
-export function Num({ label, value, onChange, min = 6, max = 60 }) {
+export function Num({ label, value, onChange, min = 6, max = 60, step = 0.5, style }) {
   return (
-    <label style={{ flex: 1 }}>
+    <label style={{ flex: 1, ...style }}>
       <span style={lbl}>{label}</span>
       <input
         style={inp}
         type="number"
         min={min}
         max={max}
-        step="0.5"
+        step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value) || min)}
       />

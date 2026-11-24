@@ -174,6 +174,11 @@ export default function CVBuilder() {
             />
             Justify text
           </label>
+
+          <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
+            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Subsequent pages top margin (mm)</span>
+            <Num label="" value={s.pageMarginTop || 16.5} onChange={(v) => setStyle('pageMarginTop', v)} step={0.5} min={0} max={50} style={{ width: 80 }} />
+          </label>
         </Section>
 
         <Section title="Header">
@@ -472,7 +477,7 @@ export default function CVBuilder() {
       </aside>
 
       <main className="cvb-stage">
-        <div className="cvb-page"><Layout cv={cv} /></div>
+        <div className="cvb-page" style={{ '--page-margin-top': `${s.pageMarginTop || 16.5}mm` }}><Layout cv={cv} /></div>
       </main>
     </div>
   );

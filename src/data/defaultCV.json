@@ -14,7 +14,8 @@
     "pageBreakBeforeProjects": true,
     "certificationsLayout": "vertical",
     "certificationsColumns": 2,
-    "justifyText": true
+    "justifyText": true,
+    "pageMarginTop": 16.5
   },
   "header": {
     "name": "Naseer Ahmad Khan",
