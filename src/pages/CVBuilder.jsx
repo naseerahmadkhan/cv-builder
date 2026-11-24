@@ -11,19 +11,17 @@ import '../styles/cvBuilder.css';
  * All CV state lives in the useCV hook; this component only wires the pieces together.
  */
 export default function CVBuilder() {
-  const { cv, actions } = useCV();
+  const { cv, tabs, activeIndex, actions } = useCV();
 
   const pageMarginTop = mm(cv.style.pageMarginTop ?? DEFAULT_STYLE.pageMarginTop);
 
-  // The print stylesheet's @page rule can only read variables set on <html>,
-  // so publish the top margin of pages 2+ there rather than on the preview element.
   useEffect(() => {
     document.documentElement.style.setProperty('--cvb-page-margin-top', pageMarginTop);
   }, [pageMarginTop]);
 
   return (
     <div className="cvb">
-      <EditorPanel cv={cv} actions={actions} />
+      <EditorPanel cv={cv} tabs={tabs} activeIndex={activeIndex} actions={actions} />
 
       <main className="cvb-stage">
         <PagedPreview cv={cv} />

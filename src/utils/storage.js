@@ -1,24 +1,23 @@
-import { STORAGE_KEY } from '../constants';
-
 /**
- * Read the auto-saved CV from localStorage.
- * @returns {object|null} The saved CV, or null if nothing valid is stored.
+ * Read the auto-saved state from localStorage.
+ * @param {string} key - Storage key
+ * @returns {object|null} The saved state, or null if nothing valid is stored.
  */
-export function loadFromStorage() {
+export function loadFromStorage(key = 'cv-builder') {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(key);
     if (raw) return JSON.parse(raw);
   } catch (error) {
-    console.warn('Failed to load CV from localStorage:', error);
+    console.warn('Failed to load from localStorage:', error);
   }
   return null;
 }
 
-/** Auto-save the CV to localStorage (failures are logged, never thrown). */
-export function saveToStorage(cv) {
+/** Auto-save the state to localStorage (failures are logged, never thrown). */
+export function saveToStorage(state, key = 'cv-builder') {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cv));
+    localStorage.setItem(key, JSON.stringify(state));
   } catch (error) {
-    console.warn('Failed to save CV to localStorage:', error);
+    console.warn('Failed to save to localStorage:', error);
   }
 }

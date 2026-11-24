@@ -2,58 +2,105 @@ import { useEffect, useState } from 'react';
 import { DEFAULT_CV } from '../data/defaultCV.js';
 import { getIn, loadFromStorage, mergeWithDefaults, saveToStorage, setIn } from '../utils';
 
-/** Start from the auto-saved CV if there is one, otherwise from the defaults. */
-function getInitialCV() {
-  const stored = loadFromStorage();
-  return stored ? mergeWithDefaults(stored) : DEFAULT_CV;
+/** Create a new CV tab with default content. */
+function createNewCV(name = 'New CV') {
+  return {
+    id: crypto.randomUUID(),
+    name,
+    cv: { ...DEFAULT_CV },
+  };
 }
 
-/**
- * Owns the CV state: loads it, auto-saves it and exposes small edit helpers.
- *
- * Paths are arrays that walk into the CV object, for example
- * `['experience', 0, 'title']` or `['header', 'name']`.
- *
- * @returns {{ cv: object, actions: object }}
- */
+/** Get initial state from localStorage or create first CV. */
+function getInitialState() {
+  const stored = loadFromStorage('cv-builder-multi');
+  if (stored?.tabs?.length) {
+    return {
+      tabs: stored.tabs.map((t) => ({ ...t, cv: mergeWithDefaults(t.cv) })),
+      activeIndex: Math.min(stored.activeIndex ?? 0, stored.tabs.length - 1),
+    };
+  }
+  return {
+    tabs: [createNewCV('CV 1')],
+    activeIndex: 0,
+  };
+}
+
 export function useCV() {
-  const [cv, setCv] = useState(getInitialCV);
+  const [state, setState] = useState(getInitialState);
 
-  // Persist every change so a refresh never loses work.
+  const { tabs, activeIndex } = state;
+  const activeTab = tabs[activeIndex];
+  const cv = activeTab?.cv ?? DEFAULT_CV;
+
   useEffect(() => {
-    saveToStorage(cv);
-  }, [cv]);
+    saveToStorage(state, 'cv-builder-multi');
+  }, [state]);
 
-  /** Run `mutate` on a deep copy of the CV and store the result. */
   const edit = (mutate) =>
-    setCv((previous) => {
+    setState((previous) => {
       const draft = structuredClone(previous);
       mutate(draft);
       return draft;
     });
 
+  const editActiveCV = (mutate) =>
+    edit((draft) => {
+      if (draft.tabs[draft.activeIndex]) {
+        mutate(draft.tabs[draft.activeIndex].cv);
+      }
+    });
+
   const actions = {
-    /** Set one value, e.g. setValue(['header', 'name'], 'Jane'). */
-    setValue: (path, value) => edit((draft) => setIn(draft, path, value)),
+    setValue: (path, value) => editActiveCV((draft) => setIn(draft, path, value)),
+    setStyle: (key, value) => editActiveCV((draft) => setIn(draft, ['style', key], value)),
+    addItem: (path, item) => editActiveCV((draft) => getIn(draft, path).push(item)),
+    removeItem: (path, index) => editActiveCV((draft) => getIn(draft, path).splice(index, 1)),
+    removeKey: (path, key) => editActiveCV((draft) => delete getIn(draft, path)[key]),
+    load: (data) => editActiveCV((draft) => Object.assign(draft, mergeWithDefaults(data))),
+    reset: () => editActiveCV((draft) => Object.assign(draft, DEFAULT_CV)),
 
-    /** Shortcut for style properties. */
-    setStyle: (key, value) => edit((draft) => setIn(draft, ['style', key], value)),
-
-    /** Append an item to the list found at `path`. */
-    addItem: (path, item) => edit((draft) => getIn(draft, path).push(item)),
-
-    /** Remove the item at `index` from the list found at `path`. */
-    removeItem: (path, index) => edit((draft) => getIn(draft, path).splice(index, 1)),
-
-    /** Delete a key from the object found at `path` (used for section icons). */
-    removeKey: (path, key) => edit((draft) => delete getIn(draft, path)[key]),
-
-    /** Replace the whole CV with imported data, filling in missing keys. */
-    load: (data) => setCv(mergeWithDefaults(data)),
-
-    /** Go back to the built-in default CV. */
-    reset: () => setCv(DEFAULT_CV),
+    // Tab management
+    addTab: (name) =>
+      edit((draft) => {
+        const newTab = createNewCV(name);
+        draft.tabs.push(newTab);
+        draft.activeIndex = draft.tabs.length - 1;
+      }),
+    removeTab: (index) =>
+      edit((draft) => {
+        if (draft.tabs.length <= 1) return;
+        draft.tabs.splice(index, 1);
+        if (draft.activeIndex >= draft.tabs.length) {
+          draft.activeIndex = draft.tabs.length - 1;
+        }
+      }),
+    renameTab: (index, name) =>
+      edit((draft) => {
+        if (draft.tabs[index]) draft.tabs[index].name = name;
+      }),
+    setActiveTab: (index) =>
+      edit((draft) => {
+        if (index >= 0 && index < draft.tabs.length) draft.activeIndex = index;
+      }),
+    duplicateTab: (index) =>
+      edit((draft) => {
+        const tab = draft.tabs[index];
+        if (!tab) return;
+        const newTab = {
+          id: crypto.randomUUID(),
+          name: `${tab.name} (copy)`,
+          cv: structuredClone(tab.cv),
+        };
+        draft.tabs.splice(index + 1, 0, newTab);
+        draft.activeIndex = index + 1;
+      }),
   };
 
-  return { cv, actions };
+  return {
+    cv,
+    tabs,
+    activeIndex,
+    actions,
+  };
 }

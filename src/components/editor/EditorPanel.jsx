@@ -1,5 +1,6 @@
 import { MESSAGES } from '../../constants';
 import { Button } from './Button.jsx';
+import { TabBar } from '../common';
 import {
   CertificationsPanel,
   CustomSectionsPanel,
@@ -15,7 +16,7 @@ import {
 import { Toolbar } from './Toolbar.jsx';
 
 /** Sidebar that edits the CV. Panels are listed in the order they appear on screen. */
-export function EditorPanel({ cv, actions }) {
+export function EditorPanel({ cv, tabs, activeIndex, actions }) {
   const handleReset = () => {
     if (confirm(MESSAGES.confirmReset)) actions.reset();
   };
@@ -23,6 +24,16 @@ export function EditorPanel({ cv, actions }) {
   return (
     <aside className="cvb-panel">
       <Toolbar cv={cv} onLoad={actions.load} />
+
+      <TabBar
+        tabs={tabs}
+        activeIndex={activeIndex}
+        onActivate={actions.setActiveTab}
+        onRename={actions.renameTab}
+        onAdd={actions.addTab}
+        onDuplicate={actions.duplicateTab}
+        onRemove={actions.removeTab}
+      />
 
       <StylePanel cv={cv} actions={actions} />
       <HeaderPanel cv={cv} actions={actions} />

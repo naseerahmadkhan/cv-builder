@@ -267,3 +267,129 @@ html, body {
     width: auto;
   }
 }
+
+/* ------------------------------------------------------------------
+   Tab bar for multiple CVs (inside editor panel)
+------------------------------------------------------------------- */
+.cvb-tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 0 12px;
+  margin: 0 -16px 12px;
+  border-bottom: 1px solid var(--cvb-panel-border);
+}
+
+.cvb-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font: var(--cvb-font-small);
+  color: #344054;
+  transition: all 0.15s ease;
+  min-width: 80px;
+  max-width: 160px;
+}
+
+.cvb-tab:hover:not(.cvb-tab--add) {
+  background: #f2f4f7;
+  border-color: #d0d5dd;
+}
+
+.cvb-tab--active {
+  background: #fff;
+  border-color: #c8601a;
+  font-weight: 600;
+}
+
+.cvb-tab__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cvb-tab__input {
+  width: 100%;
+  min-width: 80px;
+  max-width: 160px;
+  padding: 2px 6px;
+  border: 1px solid #c8601a;
+  border-radius: 3px;
+  font: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cvb-tab__actions {
+  display: flex;
+  gap: 2px;
+  margin-left: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.cvb-tab:hover .cvb-tab__actions,
+.cvb-tab--active .cvb-tab__actions {
+  opacity: 1;
+}
+
+.cvb-tab__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 11px;
+  line-height: 1;
+  color: #667085;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cvb-tab__btn:hover {
+  background: #f2f4f7;
+  border-color: #d0d5dd;
+  color: #344054;
+}
+
+.cvb-tab--add {
+  padding: 6px 12px;
+  border: 1px dashed #d0d5dd;
+  border-radius: 6px;
+  color: #667085;
+  font-weight: 600;
+}
+
+.cvb-tab--add:hover {
+  background: #f2f4f7;
+  border-color: #c8601a;
+  color: #c8601a;
+}
+
+.cvb-tab__add-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------
+   Small screens: stack the editor above the preview.
+------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .cvb {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cvb-panel {
+    width: auto;
+  }
+}
