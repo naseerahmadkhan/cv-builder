@@ -60,15 +60,18 @@ export default function ClassicLayout({ cv }) {
   const s = cv.style;
   const pt = (n) => `${n}pt`;
   const MARGIN = '0 16mm';
+  const headerPaddingTop = `${s.headerPaddingTop || 10}mm`;
+  const headerPaddingBottom = `${s.headerPaddingBottom || 7}mm`;
+  const contentPaddingBottom = `${s.contentPaddingBottom || 5}mm`;
 
   return (
-    <div style={{ fontFamily: s.font, fontSize: pt(s.baseSize), color: s.textColor, paddingBottom: '5mm', textAlign: s.justifyText ? 'justify' : 'left' }}>
+    <div style={{ fontFamily: s.font, fontSize: pt(s.baseSize), color: s.textColor, paddingBottom: contentPaddingBottom, textAlign: s.justifyText ? 'justify' : 'left' }}>
       <div
         style={{
           background: s.headerBg,
           color: s.headerText,
           textAlign: 'center',
-          padding: '10mm 8mm 7mm',
+          padding: `${headerPaddingTop} 8mm ${headerPaddingBottom}`,
         }}
       >
         <div style={{ fontSize: pt(s.nameSize), fontWeight: 700, lineHeight: 1.2 }}>

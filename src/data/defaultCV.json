@@ -15,7 +15,10 @@
     "certificationsLayout": "vertical",
     "certificationsColumns": 2,
     "justifyText": true,
-    "pageMarginTop": 16.5
+    "pageMarginTop": 16.5,
+    "headerPaddingTop": 10,
+    "headerPaddingBottom": 7,
+    "contentPaddingBottom": 5
   },
   "header": {
     "name": "Naseer Ahmad Khan",

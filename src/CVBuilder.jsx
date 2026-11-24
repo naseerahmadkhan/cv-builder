@@ -175,6 +175,15 @@ export default function CVBuilder() {
             Justify text
           </label>
 
+          <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+            <Num label="Header top padding (mm)" value={s.headerPaddingTop || 10} onChange={(v) => setStyle('headerPaddingTop', v)} step={0.5} min={0} max={30} />
+            <Num label="Header bottom padding (mm)" value={s.headerPaddingBottom || 7} onChange={(v) => setStyle('headerPaddingBottom', v)} step={0.5} min={0} max={30} />
+          </div>
+
+          <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+            <Num label="Content bottom padding (mm)" value={s.contentPaddingBottom || 5} onChange={(v) => setStyle('contentPaddingBottom', v)} step={0.5} min={0} max={30} />
+          </div>
+
           <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
             <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Subsequent pages top margin (mm)</span>
             <Num label="" value={s.pageMarginTop || 16.5} onChange={(v) => setStyle('pageMarginTop', v)} step={0.5} min={0} max={50} style={{ width: 80 }} />
