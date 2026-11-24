@@ -13,7 +13,8 @@
     "ruleColor": "#5A6B80",
     "pageBreakBeforeProjects": true,
     "certificationsLayout": "vertical",
-    "certificationsColumns": 2
+    "certificationsColumns": 2,
+    "justifyText": true
   },
   "header": {
     "name": "Naseer Ahmad Khan",

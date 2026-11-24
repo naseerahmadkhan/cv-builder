@@ -165,6 +165,15 @@ export default function CVBuilder() {
               </select>
             </label>
           )}
+
+          <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
+            <input
+              type="checkbox"
+              checked={s.justifyText}
+              onChange={(e) => setStyle('justifyText', e.target.checked)}
+            />
+            Justify text
+          </label>
         </Section>
 
         <Section title="Header">
