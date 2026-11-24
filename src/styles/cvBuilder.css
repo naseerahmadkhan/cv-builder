@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700&family=Merriweather:wght@400;700&display=swap');
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
 .cvb {
   display: flex;
   height: 100vh;
