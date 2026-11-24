@@ -69,6 +69,8 @@ html, body {
   body {
     margin: 0;
     background: #fff;
+    height: auto;
+    overflow: visible;
   }
 
   .cvb {
@@ -91,6 +93,32 @@ html, body {
     margin: 0;
     width: 210mm;
     min-height: 0;
+    page-break-after: auto;
+  }
+
+  .cvb-page > div {
+    page-break-inside: auto;
+  }
+
+  h2 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cvb-page ul,
+  .cvb-page table,
+  .cvb-page > div > div {
+    page-break-inside: auto;
+  }
+
+  li[style*="breakInside: avoid"],
+  div[style*="breakInside: avoid"] {
+    page-break-inside: avoid;
+  }
+
+  div[style*="breakBefore: page"],
+  div[style*="break-before: page"] {
+    page-break-before: always;
   }
 }
 
