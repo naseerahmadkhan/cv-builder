@@ -19,6 +19,7 @@ src/
 │   ├── app.js                   # Storage key, export settings, user-facing messages
 │   ├── editor.js                # Style-control config, textarea sizes, "add item" templates
 │   ├── layout.js                # Measurements for the printed Classic layout
+│   ├── page.js                  # A4 size and pagination constants
 │   ├── sections.js              # CV section keys and headings
 │   ├── style.js                 # DEFAULT_STYLE, fonts, color presets, certification layouts
 │   ├── ui.js                    # Editor sidebar colors, fonts, radii
@@ -28,10 +29,12 @@ src/
 │   ├── defaultCV.js             # Merges the JSON with DEFAULT_STYLE
 │   └── icons.js                 # SVG icon presets
 ├── hooks/
-│   └── useCV.js                 # CV state, auto-save and edit helpers
+│   ├── useCV.js                 # CV state, auto-save and edit helpers
+│   └── usePagination.js         # Finds where printed pages break (drives the preview)
 ├── utils/
 │   ├── cv.js                    # mergeWithDefaults, setIn/getIn
 │   ├── file.js                  # JSON download / file reading
+│   ├── pagination.js            # Page-break calculation (computePageStarts, paginate)
 │   ├── storage.js               # localStorage load/save
 │   ├── svg.js                   # cleanSvg (sanitizes pasted icons)
 │   ├── text.js                  # linesOf / toLines
@@ -46,6 +49,8 @@ src/
 │   │   ├── Field, NumberField, ColorField, SelectField, CheckboxField, IconPicker
 │   │   ├── Button, Card, Section
 │   │   └── styles.js            # Shared input/button styles
+│   ├── preview/
+│   │   └── PagedPreview.jsx     # On-screen A4 sheets showing the real page breaks
 │   └── layout/                  # Printed CV
 │       ├── classic/             # One component per CV section
 │       ├── ClassicLayout.jsx    # Assembles the Classic layout
@@ -67,6 +72,17 @@ src/
 - **Edit by path.** Panels call `actions.setValue(['experience', 0, 'title'], value)`,
   `addItem`, `removeItem` and `removeKey` from `useCV` instead of cloning state themselves.
 - **One component per file**, with a short comment saying what it renders.
+
+## How the page preview works
+
+The preview shows separate A4 sheets so you can see where each printed page ends.
+`PagedPreview` renders the CV twice: one continuous hidden copy (this is what the
+browser prints, and what gets measured) and the visible sheets, each showing its
+slice of the CV. `utils/pagination.js` mirrors the browser's print rules: pages 2+
+have the smaller top margin, blocks marked `cvb-avoid-break` are never split,
+headings stay with the content after them, and `cvb-page-break-before` forces a new page.
+
+Keep `PAGE` in `constants/page.js` in sync with `--cvb-page-width/height` in the CSS.
 
 ## Getting Started
 

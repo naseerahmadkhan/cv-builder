@@ -10,6 +10,7 @@ export function HeaderBanner({ header, style }) {
 
   return (
     <div
+      className="cvb-avoid-break"
       style={{
         background: style.headerBg,
         color: style.headerText,

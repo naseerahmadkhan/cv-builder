@@ -3,7 +3,8 @@
  * Returns '' when the input is not an <svg> element.
  *
  * Strips scripts, foreignObject, inline event handlers, javascript: URLs and
- * fixed width/height (the icon is sized by CSS instead).
+ * the fixed width/height on the root <svg> tag (the icon is sized by CSS instead).
+ * Child shapes keep their width/height, e.g. <rect width="20" height="16">.
  *
  * @param {string} [markup]
  * @returns {string}
@@ -17,5 +18,7 @@ export function cleanSvg(markup = '') {
     .replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '')
     .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
     .replace(/javascript:/gi, '')
-    .replace(/\s(width|height)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+    .replace(/^<svg[^>]*>/i, (rootTag) =>
+      rootTag.replace(/\s(width|height)\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, ''),
+    );
 }

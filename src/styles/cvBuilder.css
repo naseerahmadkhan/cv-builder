@@ -59,7 +59,8 @@
 ------------------------------------------------------------------- */
 :root {
   --cvb-page-width: 210mm;   /* A4 */
-  --cvb-page-height: 297mm;  /* A4 */
+  --cvb-page-height: 297mm;  /* A4 — keep both in sync with PAGE in constants/page.js */
+  --cvb-sheet-gap: 16px;
   --cvb-panel-width: 400px;
   --cvb-panel-padding: 16px;
   --cvb-stage-padding: 24px;
@@ -107,15 +108,51 @@ html, body {
   padding: var(--cvb-stage-padding);
 }
 
-/* The paper: one A4 sheet shown on screen, printed as-is. */
+/*
+  The continuous CV (.cvb-page) is what gets printed. On screen it is parked
+  off-screen and only measured; the visible preview is the .cvb-sheets below.
+  position: fixed keeps it from adding scroll space to the stage.
+*/
 .cvb-page {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  visibility: hidden;
+  pointer-events: none;
+  width: var(--cvb-page-width);
+  background: var(--cvb-page-bg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* On-screen preview: A4 sheets stacked like the browser's print preview. */
+.cvb-sheets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cvb-sheet-gap);
+}
+
+.cvb-sheet {
+  position: relative;
   width: var(--cvb-page-width);
   min-height: var(--cvb-page-height);
-  margin: 0 auto;
+  flex: none;
+  overflow: hidden;
   background: var(--cvb-page-bg);
   box-shadow: var(--cvb-page-shadow);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+}
+
+/* Small "Page N" tag in the corner so page breaks are easy to spot. */
+.cvb-sheet::after {
+  content: attr(data-page);
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  font: 11px system-ui, sans-serif;
+  color: #9aa3b2;
 }
 
 .cvb-page ul {
@@ -186,11 +223,18 @@ html, body {
     overflow: visible;
   }
 
+  /* Print the continuous copy, not the on-screen sheets. */
+  .cvb-sheets {
+    display: none;
+  }
+
   .cvb-page {
+    position: static;
+    visibility: visible;
+    pointer-events: auto;
     box-shadow: none;
     margin: 0;
     width: var(--cvb-page-width);
-    min-height: 0;
     page-break-after: auto;
   }
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { EditorPanel } from '../components/editor';
-import { CVLayout } from '../components/layout';
+import { PagedPreview } from '../components/preview';
 import { DEFAULT_STYLE } from '../constants';
 import { useCV } from '../hooks';
 import { mm } from '../utils';
@@ -26,9 +26,7 @@ export default function CVBuilder() {
       <EditorPanel cv={cv} actions={actions} />
 
       <main className="cvb-stage">
-        <div className="cvb-page">
-          <CVLayout cv={cv} />
-        </div>
+        <PagedPreview cv={cv} />
       </main>
     </div>
   );
