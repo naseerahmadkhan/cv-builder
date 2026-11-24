@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { DEFAULT_CV } from './data/defaultCV.js';
 import { ICONS } from './data/icons.js';
-import { FONTS } from './data/fonts.js';
+import { FONTS, COLOR_PRESETS, DEFAULT_STYLE, UI } from './data/constants.js';
 import { LAYOUTS } from './data/layouts.js';
 import { merge, linesOf, toLines } from './utils/helpers.js';
 import { loadFromStorage, saveToStorage, downloadJson, readJsonFile } from './utils/storage.js';
@@ -10,14 +10,35 @@ import './styles/cvBuilder.css';
 
 const btn = {
   padding: '7px 12px',
-  border: '1px solid #b9c1ce',
+  border: `1px solid ${UI.borderDark}`,
   borderRadius: 6,
-  background: '#fff',
+  background: UI.bg,
   font: '13px system-ui, sans-serif',
   cursor: 'pointer',
 };
 
-const btnMain = { ...btn, background: '#232B38', color: '#fff', borderColor: '#232B38' };
+const btnMain = { ...btn, background: DEFAULT_STYLE.headerBg, color: '#fff', borderColor: DEFAULT_STYLE.headerBg };
+
+// Shared UI styles
+const lbl = {
+  display: 'block',
+  fontFamily: 'system-ui, sans-serif',
+  fontSize: 12,
+  color: UI.labelColor,
+  margin: '8px 0 3px',
+};
+
+const sel = {
+  width: '100%',
+  boxSizing: 'border-box',
+  padding: '6px 8px',
+  border: `1px solid ${UI.border}`,
+  borderRadius: 6,
+  font: '13px system-ui, sans-serif',
+  background: UI.bg,
+};
+
+const selAuto = { ...sel, width: 'auto' };
 
 export default function CVBuilder() {
   const [cv, setCv] = useState(() => {
@@ -70,26 +91,14 @@ export default function CVBuilder() {
           <button style={btn} onClick={() => fileRef.current.click()}>Load JSON</button>
           <input ref={fileRef} type="file" accept="application/json" hidden onChange={handleLoadJson} />
         </div>
-        <p style={{ font: '12px system-ui', color: '#6b7482', margin: '4px 0 8px' }}>
+        <p style={{ font: '12px system-ui', color: UI.helperText, margin: '4px 0 8px' }}>
           In the print dialog choose "Save as PDF", paper A4, margins None, and turn on Background graphics.
         </p>
 
         <Section title="Layout and style" open>
           <label>
-            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Layout</span>
-            <select
-              style={{
-                width: '100%',
-                boxSizing: 'border-box',
-                padding: '6px 8px',
-                border: '1px solid #cfd5de',
-                borderRadius: 6,
-                font: '13px system-ui, sans-serif',
-                background: '#fff',
-              }}
-              value={cv.layout}
-              onChange={(e) => edit((d) => { d.layout = e.target.value; })}
-            >
+            <span style={lbl}>Layout</span>
+            <select style={sel} value={cv.layout} onChange={(e) => edit((d) => { d.layout = e.target.value; })}>
               {Object.entries(LAYOUTS).map(([k, v]) => (
                 <option key={k} value={k}>{v.label}</option>
               ))}
@@ -97,20 +106,8 @@ export default function CVBuilder() {
           </label>
 
           <label>
-            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Font</span>
-            <select
-              style={{
-                width: '100%',
-                boxSizing: 'border-box',
-                padding: '6px 8px',
-                border: '1px solid #cfd5de',
-                borderRadius: 6,
-                font: '13px system-ui, sans-serif',
-                background: '#fff',
-              }}
-              value={s.font}
-              onChange={(e) => setStyle('font', e.target.value)}
-            >
+            <span style={lbl}>Font</span>
+            <select style={sel} value={s.font} onChange={(e) => setStyle('font', e.target.value)}>
               {FONTS.map(([n, v]) => (
                 <option key={n} value={v}>{n}</option>
               ))}
@@ -123,11 +120,12 @@ export default function CVBuilder() {
             <Num label="Name (pt)" value={s.nameSize} onChange={(v) => setStyle('nameSize', v)} />
           </div>
 
-          <div style={{ display: 'flex', gap: 8 }}>
-            <Color label="Header bg" value={s.headerBg} onChange={(v) => setStyle('headerBg', v)} />
-            <Color label="Header text" value={s.headerText} onChange={(v) => setStyle('headerText', v)} />
-            <Color label="Headings" value={s.accent} onChange={(v) => setStyle('accent', v)} />
-            <Color label="Body text" value={s.textColor} onChange={(v) => setStyle('textColor', v)} />
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <Color label="Header bg" value={s.headerBg} onChange={(v) => setStyle('headerBg', v)} presetKey="headerBg" />
+            <Color label="Header text" value={s.headerText} onChange={(v) => setStyle('headerText', v)} presetKey="headerText" />
+            <Color label="Headings" value={s.accent} onChange={(v) => setStyle('accent', v)} presetKey="accent" />
+            <Color label="Body text" value={s.textColor} onChange={(v) => setStyle('textColor', v)} presetKey="textColor" />
+            <Color label="Rule color" value={s.ruleColor} onChange={(v) => setStyle('ruleColor', v)} presetKey="ruleColor" />
           </div>
 
           <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
@@ -140,12 +138,8 @@ export default function CVBuilder() {
           </label>
 
           <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
-            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Certifications layout</span>
-            <select
-              style={{ width: 'auto', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #cfd5de', borderRadius: 6, font: '13px system-ui, sans-serif', background: '#fff' }}
-              value={s.certificationsLayout}
-              onChange={(e) => setStyle('certificationsLayout', e.target.value)}
-            >
+            <span style={lbl}>Certifications layout</span>
+            <select style={selAuto} value={s.certificationsLayout} onChange={(e) => setStyle('certificationsLayout', e.target.value)}>
               <option value="vertical">Vertical (list)</option>
               <option value="grid-2">Grid (2 columns)</option>
               <option value="grid-3">Grid (3 columns)</option>
@@ -154,12 +148,8 @@ export default function CVBuilder() {
 
           {s.certificationsLayout?.startsWith('grid') && (
             <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
-              <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Columns</span>
-              <select
-                style={{ width: 'auto', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #cfd5de', borderRadius: 6, font: '13px system-ui, sans-serif', background: '#fff' }}
-                value={s.certificationsColumns || 2}
-                onChange={(e) => setStyle('certificationsColumns', Number(e.target.value))}
-              >
+              <span style={lbl}>Columns</span>
+              <select style={selAuto} value={s.certificationsColumns || 2} onChange={(e) => setStyle('certificationsColumns', Number(e.target.value))}>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
@@ -185,7 +175,7 @@ export default function CVBuilder() {
           </div>
 
           <label style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 10, font: '13px system-ui' }}>
-            <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Subsequent pages top margin (mm)</span>
+            <span style={lbl}>Subsequent pages top margin (mm)</span>
             <Num label="" value={s.pageMarginTop || 16.5} onChange={(v) => setStyle('pageMarginTop', v)} step={0.5} min={0} max={50} style={{ width: 80 }} />
           </label>
         </Section>
@@ -204,20 +194,8 @@ export default function CVBuilder() {
                 onChange={(v) => edit((d) => { d.header.contacts[i].text = v; })}
               />
               <label>
-                <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Icon preset</span>
-                <select
-                  style={{
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    padding: '6px 8px',
-                    border: '1px solid #cfd5de',
-                    borderRadius: 6,
-                    font: '13px system-ui, sans-serif',
-                    background: '#fff',
-                  }}
-                  value=""
-                  onChange={(e) => e.target.value && edit((d) => { d.header.contacts[i].icon = ICONS[e.target.value]; })}
-                >
+                <span style={lbl}>Icon preset</span>
+                <select style={sel} value="" onChange={(e) => e.target.value && edit((d) => { d.header.contacts[i].icon = ICONS[e.target.value]; })}>
                   <option value="">Choose a preset…</option>
                   {Object.keys(ICONS).map((n) => (
                     <option key={n} value={n}>{n}</option>
@@ -241,24 +219,12 @@ export default function CVBuilder() {
         <Section title="Section Icons">
           {Object.entries(cv.sectionIcons || {}).map(([key, icon]) => (
             <Card key={key} onRemove={() => edit((d) => { delete d.sectionIcons[key]; })}>
-              <label style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>
+              <label style={lbl}>
                 {key.charAt(0).toUpperCase() + key.slice(1)} Icon
               </label>
               <label>
-                <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Icon preset</span>
-                <select
-                  style={{
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    padding: '6px 8px',
-                    border: '1px solid #cfd5de',
-                    borderRadius: 6,
-                    font: '13px system-ui, sans-serif',
-                    background: '#fff',
-                  }}
-                  value=""
-                  onChange={(e) => e.target.value && edit((d) => { d.sectionIcons[key] = ICONS[e.target.value]; })}
-                >
+                <span style={lbl}>Icon preset</span>
+                <select style={sel} value="" onChange={(e) => e.target.value && edit((d) => { d.sectionIcons[key] = ICONS[e.target.value]; })}>
                   <option value="">Choose a preset…</option>
                   {Object.keys(ICONS).map((n) => (
                     <option key={n} value={n}>{n}</option>
@@ -412,20 +378,8 @@ export default function CVBuilder() {
                 onChange={(v) => listEdit('certifications', i, 'issuer', v)}
               />
               <label>
-                <span style={{ display: 'block', fontFamily: 'system-ui, sans-serif', fontSize: 12, color: '#5b6472', margin: '8px 0 3px' }}>Icon preset</span>
-                <select
-                  style={{
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    padding: '6px 8px',
-                    border: '1px solid #cfd5de',
-                    borderRadius: 6,
-                    font: '13px system-ui, sans-serif',
-                    background: '#fff',
-                  }}
-                  value=""
-                  onChange={(e) => e.target.value && edit((d) => { d.certifications[i].icon = ICONS[e.target.value]; })}
-                >
+                <span style={lbl}>Icon preset</span>
+                <select style={sel} value="" onChange={(e) => e.target.value && edit((d) => { d.certifications[i].icon = ICONS[e.target.value]; })}>
                   <option value="">Choose a preset…</option>
                   {Object.keys(ICONS).map((n) => (
                     <option key={n} value={n}>{n}</option>
