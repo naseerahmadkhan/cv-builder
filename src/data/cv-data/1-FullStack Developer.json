@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "layout": "classic",
+  "style": {
+    "font": "'JetBrains Mono', monospace",
+    "baseSize": 11.5,
+    "nameSize": 28,
+    "headingSize": 14,
+    "headerBg": "#232B38",
+    "headerText": "#EDEDED",
+    "accent": "#C8601A",
+    "textColor": "#111111",
+    "ruleColor": "#5A6B80",
+    "pageBreakBeforeProjects": true,
+    "certificationsLayout": "grid-2",
+    "certificationsColumns": 2,
+    "justifyText": true,
+    "pageMarginTop": 16.5,
+    "headerPaddingTop": 10,
+    "headerPaddingBottom": 7,
+    "contentPaddingBottom": 5
+  },
+  "header": {
+    "name": "Naseer Ahmad Khan",
+    "contacts": [
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>",
+        "text": "+92 332 4659 119"
+      },
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-10 6L2 7\"/></svg>",
+        "text": "naseer4uplus@gmail.com"
+      },
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>",
+        "text": "naseer-one"
+      }
+    ]
+  },
+  "sectionIcons": {
+    "summary": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/></svg>",
+    "skills": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n  <polyline points=\"16 18 22 12 16 6\" />\n  <polyline points=\"8 6 2 12 8 18\" />\n</svg>",
+    "experience": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n  <polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\" />\n  <polyline points=\"17 6 23 6 23 12\" />\n</svg>",
+    "projects": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n  <path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\" />\n  <path d=\"m10 10-2 2 2 2\" />\n  <path d=\"m14 14 2-2-2-2\" />\n</svg>",
+    "education": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n  <path d=\"M22 10v6M2 10l10-5 10 5-10 5z\" />\n  <path d=\"M6 12v5c3 3 9 3 12 0v-5\" />\n</svg>",
+    "certifications": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n  <path d=\"M19 14V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7\" />\n  <line x1=\"7\" y1=\"8\" x2=\"15\" y2=\"8\" />\n  <line x1=\"7\" y1=\"12\" x2=\"11\" y2=\"12\" />\n  <circle cx=\"17\" cy=\"17\" r=\"3\" />\n  <path d=\"m15.5 19.5-.5 3.5 2-1 2 1-.5-3.5\" />\n</svg>"
+  },
+  "summary": "With hands-on experience in full-stack development, I build scalable and efficient web and mobile applications. Proficient in modern frontend technologies including React.js, React Native, and Next.js, along with backend development using Node.js, I adapt quickly to evolving technology stacks and development environments. I work extensively with databases such as MySQL, SQL Server, and MongoDB to design reliable and data-driven applications. Passionate about creating high-quality user experiences and robust backend systems, I focus on delivering maintainable and performance-oriented solutions while continuously learning and improving as a developer.",
+  "skills": [
+    {
+      "label": "Development",
+      "value": "Javascript, Docker, Python, SQL, Kafka, PostgreSQL"
+    },
+    {
+      "label": "Databases",
+      "value": "PostgreSQL, MySQL, MSSQL, MongoDB, Redis"
+    },
+    {
+      "label": "Mobile App and Web",
+      "value": "Reactjs, ReactNative, Nextjs, Nodejs"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Full-Stack Developer",
+      "company": "eData Solutions Pty Ltd.",
+      "url": "https://www.edatasolutions.com.au",
+      "dates": "15-09-2018 to Present",
+      "bullets": [
+        "Developed scalable web and mobile applications using React.js, Next.js, and React Native to deliver responsive and user-friendly interfaces.",
+        "Built RESTful APIs and backend services using Node.js, ensuring secure and efficient data processing.",
+        "Designed and optimized database schemas using PostgreSQL, MySQL, and MongoDB for high-performance data management.",
+        "Implemented containerized applications using Docker to streamline development and deployment workflows.",
+        "Integrated Kafka-based messaging systems to support asynchronous communication and scalable data processing.",
+        "Improved application performance by optimizing SQL queries and database indexing across PostgreSQL and MSSQL.",
+        "Collaborated with cross-functional teams to deliver high-quality features and maintain scalable system architecture."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project: Web Application Platform",
+      "bullets": [
+        "Built a full-stack web application using Next.js (frontend) and Node.js (backend).",
+        "Implemented secure authentication and API services with Node.js.",
+        "Designed and managed relational databases using PostgreSQL and MySQL.",
+        "Containerized the application using Docker for easier deployment and environment consistency."
+      ]
+    },
+    {
+      "name": "Project: Mobile Application",
+      "bullets": [
+        "Developed a cross-platform mobile application using React Native.",
+        "Integrated backend APIs built with Node.js and connected to MongoDB for data storage.",
+        "Optimized performance and improved user experience with responsive UI components."
+      ]
+    },
+    {
+      "name": "Project: Real-time Data Processing System",
+      "bullets": [
+        "Built a real-time data pipeline using Kafka for message streaming.",
+        "Processed and stored data in PostgreSQL and Redis for fast access and caching.",
+        "Implemented backend services in Node.js and Python to handle data processing tasks."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Computer Science",
+      "extra": "CGPA 3.26",
+      "dates": "October 2015 To March 2018",
+      "school": "University of Management and Technology, Lahore."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Graphics Designing",
+      "dates": "Apr 2019 to Jun 2019",
+      "issuer": "www.digiskills.pk",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 19l7-7 3 3-7 7-3-3z\"/><path d=\"M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z\"/><path d=\"M2 2l7.586 7.586\"/><circle cx=\"11\" cy=\"11\" r=\"2\"/></svg>"
+    },
+    {
+      "title": "Certified Cloud Native Developer",
+      "dates": "02/03/2021 To 31/12/2022",
+      "issuer": "Presidential Initiative For Artificial Intelligence & Computing",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z\"/></svg>"
+    },
+    {
+      "title": "Mobile App development (React Native)",
+      "dates": "17/01/2023 To10/04/2023",
+      "issuer": "e-rozgaar",
+      "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/></svg>"
+    }
+  ],
+  "customSections": [],
+  "tabs": [
+    {
+      "id": "f009e122-dc6e-4ab8-ae6e-6054baef1495",
+      "name": "CV 1",
+      "cv": {
+        "version": 1,
+        "layout": "classic",
+        "style": {
+          "font": "'JetBrains Mono', monospace",
+          "baseSize": 10,
+          "nameSize": 28,
+          "headingSize": 14,
+          "headerBg": "#232B38",
+          "headerText": "#EDEDED",
+          "accent": "#C8601A",
+          "textColor": "#111111",
+          "ruleColor": "#5A6B80",
+          "pageBreakBeforeProjects": true,
+          "certificationsLayout": "vertical",
+          "certificationsColumns": 2,
+          "justifyText": true,
+          "pageMarginTop": 16.5,
+          "headerPaddingTop": 10,
+          "headerPaddingBottom": 7,
+          "contentPaddingBottom": 5
+        },
+        "header": {
+          "name": "Naseer Ahmad Khan",
+          "contacts": [
+            {
+              "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg>",
+              "text": "+92 332 4659 119"
+            },
+            {
+              "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"4\" width=\"20\" height=\"16\" rx=\"2\"/><path d=\"m22 7-10 6L2 7\"/></svg>",
+              "text": "naseer4uplus@gmail.com"
+            },
+            {
+              "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/></svg>",
+              "text": "naseer-one"
+            }
+          ]
+        },
+        "sectionIcons": {
+          "summary": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/></svg>",
+          "skills": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 18 2 12 8 6\"/></svg>",
+          "experience": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>",
+          "projects": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><path d=\"M8 21h8\"/><path d=\"M12 17v4\"/></svg>",
+          "education": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 10v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10\"/><path d=\"M6 12v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5\"/><path d=\"M12 2l10 7-10 7-10-7 10-7z\"/><path d=\"M2 17l10-7 10 7\"/></svg>",
+          "certifications": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><polyline points=\"14 2 14 8 20 8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/><path d=\"M10 9H8\"/></svg>"
+        },
+        "summary": "With hands-on experience in full-stack development, I build scalable and efficient web and mobile applications. Proficient in modern frontend technologies including React.js, React Native, and Next.js, along with backend development using Node.js, I adapt quickly to evolving technology stacks and development environments. I work extensively with databases such as MySQL, SQL Server, and MongoDB to design reliable and data-driven applications. Passionate about creating high-quality user experiences and robust backend systems, I focus on delivering maintainable and performance-oriented solutions while continuously learning and improving as a developer.",
+        "skills": [
+          {
+            "label": "Development",
+            "value": "Javascript, Docker, Python, SQL, Kafka, PostgreSQL"
+          },
+          {
+            "label": "Databases",
+            "value": "PostgreSQL, MySQL, MSSQL, MongoDB, Redis"
+          },
+          {
+            "label": "Mobile App and Web",
+            "value": "Reactjs, ReactNative, Nextjs, Nodejs"
+          }
+        ],
+        "experience": [
+          {
+            "title": "Full-Stack Developer",
+            "company": "eData Solutions Pty Ltd.",
+            "url": "https://www.edatasolutions.com.au",
+            "dates": "15-09-2018 to Present",
+            "bullets": [
+              "Developed scalable web and mobile applications using React.js, Next.js, and React Native to deliver responsive and user-friendly interfaces.",
+              "Built RESTful APIs and backend services using Node.js, ensuring secure and efficient data processing.",
+              "Designed and optimized database schemas using PostgreSQL, MySQL, and MongoDB for high-performance data management.",
+              "Implemented containerized applications using Docker to streamline development and deployment workflows.",
+              "Integrated Kafka-based messaging systems to support asynchronous communication and scalable data processing.",
+              "Improved application performance by optimizing SQL queries and database indexing across PostgreSQL and MSSQL.",
+              "Collaborated with cross-functional teams to deliver high-quality features and maintain scalable system architecture."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Project: Web Application Platform",
+            "bullets": [
+              "Built a full-stack web application using Next.js (frontend) and Node.js (backend).",
+              "Implemented secure authentication and API services with Node.js.",
+              "Designed and managed relational databases using PostgreSQL and MySQL.",
+              "Containerized the application using Docker for easier deployment and environment consistency."
+            ]
+          },
+          {
+            "name": "Project: Mobile Application",
+            "bullets": [
+              "Developed a cross-platform mobile application using React Native.",
+              "Integrated backend APIs built with Node.js and connected to MongoDB for data storage.",
+              "Optimized performance and improved user experience with responsive UI components."
+            ]
+          },
+          {
+            "name": "Project: Real-time Data Processing System",
+            "bullets": [
+              "Built a real-time data pipeline using Kafka for message streaming.",
+              "Processed and stored data in PostgreSQL and Redis for fast access and caching.",
+              "Implemented backend services in Node.js and Python to handle data processing tasks."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "degree": "Master of Computer Science",
+            "extra": "CGPA 3.26",
+            "dates": "October 2015 To March 2018",
+            "school": "University of Management and Technology, Lahore."
+          }
+        ],
+        "certifications": [
+          {
+            "title": "Graphics Designing",
+            "dates": "Apr 2019 to Jun 2019",
+            "issuer": "www.digiskills.pk",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"/><circle cx=\"8\" cy=\"8\" r=\"2\"/><path d=\"M14 14l4 4\"/><path d=\"M18 10l-4 4\"/></svg>"
+          },
+          {
+            "title": "Certified Cloud Native Developer",
+            "dates": "02/03/2021 To 31/12/2022",
+            "issuer": "Presidential Initiative For Artificial Intelligence & Computing",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 13.5A9 9 0 1 0 6 5.5a4.5 4.5 0 0 1 12 0z\"/><path d=\"M12 17v4\"/><path d=\"M8 21h8\"/></svg>"
+          },
+          {
+            "title": "Mobile App development (React Native)",
+            "dates": "17/01/2023 To10/04/2023",
+            "issuer": "e-rozgaar",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/></svg>"
+          }
+        ],
+        "customSections": []
+      }
+    }
+  ],
+  "activeIndex": 0
+}
