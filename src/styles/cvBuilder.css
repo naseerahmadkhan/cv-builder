@@ -65,6 +65,12 @@
   --cvb-panel-padding: 16px;
   --cvb-stage-padding: 24px;
 
+  --cvb-tab-height: 38px;
+  --cvb-tab-bg: #dde2ea;
+  --cvb-tab-hover-bg: #cfd6e0;
+  --cvb-tab-text: #44505f;
+  --cvb-tab-accent: #232B38;
+
   --cvb-app-bg: #e9ecf1;
   --cvb-panel-bg: #fff;
   --cvb-panel-border: #d5dae2;
@@ -102,10 +108,121 @@ html, body {
   box-sizing: border-box;
 }
 
+/* Right side: tab bar on top, scrolling preview below. */
+.cvb-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .cvb-stage {
   flex: 1;
   overflow: auto;
   padding: var(--cvb-stage-padding);
+}
+
+/* CV tabs */
+.cvb-tabs {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 8px var(--cvb-stage-padding) 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--cvb-panel-border);
+  background: var(--cvb-app-bg);
+  font: 13px system-ui, sans-serif;
+}
+
+.cvb-tab {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--cvb-tab-height);
+  padding: 0 4px;
+  border-radius: 8px 8px 0 0;
+  background: var(--cvb-tab-bg);
+  color: var(--cvb-tab-text);
+}
+
+.cvb-tab:hover {
+  background: var(--cvb-tab-hover-bg);
+}
+
+.cvb-tab--active,
+.cvb-tab--active:hover {
+  background: var(--cvb-page-bg);
+  color: var(--cvb-tab-accent);
+}
+
+.cvb-tab-label,
+.cvb-tab-btn,
+.cvb-tab-add {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.cvb-tab-label {
+  height: 100%;
+  max-width: 220px;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Rename / duplicate / delete for the open CV, pinned to the right of the bar. */
+.cvb-tab-actions {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  padding-bottom: 6px;
+  color: var(--cvb-tab-text);
+}
+
+.cvb-tab-btn {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.cvb-tab-btn:hover {
+  opacity: 1;
+  background: var(--cvb-tab-bg);
+}
+
+.cvb-tab-add {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin: 0 0 4px 4px;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--cvb-tab-text);
+}
+
+.cvb-tab-add:hover {
+  background: var(--cvb-tab-hover-bg);
+}
+
+.cvb-tab-input {
+  flex: none;
+  box-sizing: border-box;
+  height: var(--cvb-tab-height);
+  width: 180px;
+  padding: 0 10px;
+  border: 1px solid var(--cvb-tab-accent);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  font: 600 13px system-ui, sans-serif;
+  outline: none;
 }
 
 /*
@@ -218,6 +335,14 @@ html, body {
     display: none;
   }
 
+  .cvb-main {
+    display: block;
+  }
+
+  .cvb-tabs {
+    display: none;
+  }
+
   .cvb-stage {
     padding: 0;
     overflow: visible;
@@ -252,132 +377,6 @@ html, body {
   .cvb-page > div > div {
     page-break-inside: auto;
   }
-}
-
-/* ------------------------------------------------------------------
-   Small screens: stack the editor above the preview.
-------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .cvb {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .cvb-panel {
-    width: auto;
-  }
-}
-
-/* ------------------------------------------------------------------
-   Tab bar for multiple CVs (inside editor panel)
-------------------------------------------------------------------- */
-.cvb-tabbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  padding: 0 0 12px;
-  margin: 0 -16px 12px;
-  border-bottom: 1px solid var(--cvb-panel-border);
-}
-
-.cvb-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  font: var(--cvb-font-small);
-  color: #344054;
-  transition: all 0.15s ease;
-  min-width: 80px;
-  max-width: 160px;
-}
-
-.cvb-tab:hover:not(.cvb-tab--add) {
-  background: #f2f4f7;
-  border-color: #d0d5dd;
-}
-
-.cvb-tab--active {
-  background: #fff;
-  border-color: #c8601a;
-  font-weight: 600;
-}
-
-.cvb-tab__name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.cvb-tab__input {
-  width: 100%;
-  min-width: 80px;
-  max-width: 160px;
-  padding: 2px 6px;
-  border: 1px solid #c8601a;
-  border-radius: 3px;
-  font: inherit;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.cvb-tab__actions {
-  display: flex;
-  gap: 2px;
-  margin-left: 4px;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.cvb-tab:hover .cvb-tab__actions,
-.cvb-tab--active .cvb-tab__actions {
-  opacity: 1;
-}
-
-.cvb-tab__btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  font-size: 11px;
-  line-height: 1;
-  color: #667085;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.cvb-tab__btn:hover {
-  background: #f2f4f7;
-  border-color: #d0d5dd;
-  color: #344054;
-}
-
-.cvb-tab--add {
-  padding: 6px 12px;
-  border: 1px dashed #d0d5dd;
-  border-radius: 6px;
-  color: #667085;
-  font-weight: 600;
-}
-
-.cvb-tab--add:hover {
-  background: #f2f4f7;
-  border-color: #c8601a;
-  color: #c8601a;
-}
-
-.cvb-tab__add-icon {
-  font-size: 14px;
-  line-height: 1;
 }
 
 /* ------------------------------------------------------------------

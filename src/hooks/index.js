@@ -1,2 +1,2 @@
-export { useCV } from './useCV.js';
+export { useWorkspace } from './useWorkspace.js';
 export { usePagination } from './usePagination.js';

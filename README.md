@@ -29,13 +29,15 @@ src/
 │   ├── defaultCV.js             # Merges the JSON with DEFAULT_STYLE
 │   └── icons.js                 # SVG icon presets
 ├── hooks/
-│   ├── useCV.js                 # CV state, auto-save and edit helpers
+│   ├── useWorkspace.js          # All CV tabs: state, auto-save, edit + tab helpers
 │   └── usePagination.js         # Finds where printed pages break (drives the preview)
 ├── utils/
 │   ├── cv.js                    # mergeWithDefaults, setIn/getIn
+│   ├── id.js                    # createId for new tabs
 │   ├── file.js                  # JSON download / file reading
 │   ├── pagination.js            # Page-break calculation (computePageStarts, paginate)
 │   ├── storage.js               # localStorage load/save
+│   ├── workspace.js             # Tab/workspace helpers (names, normalizing saved data)
 │   ├── svg.js                   # cleanSvg (sanitizes pasted icons)
 │   ├── text.js                  # linesOf / toLines
 │   └── units.js                 # pt() / mm()
@@ -49,6 +51,8 @@ src/
 │   │   ├── Field, NumberField, ColorField, SelectField, CheckboxField, IconPicker
 │   │   ├── Button, Card, Section
 │   │   └── styles.js            # Shared input/button styles
+│   ├── tabs/
+│   │   └── CVTabs.jsx           # CV tab bar (add, rename, duplicate, delete)
 │   ├── preview/
 │   │   └── PagedPreview.jsx     # On-screen A4 sheets showing the real page breaks
 │   └── layout/                  # Printed CV
@@ -70,8 +74,16 @@ src/
   user-facing messages go in `src/constants/`; components import them.
   Labels that belong to a single input stay next to that input.
 - **Edit by path.** Panels call `actions.setValue(['experience', 0, 'title'], value)`,
-  `addItem`, `removeItem` and `removeKey` from `useCV` instead of cloning state themselves.
+  `addItem`, `removeItem` and `removeKey` from `useWorkspace` instead of cloning state themselves.
 - **One component per file**, with a short comment saying what it renders.
+
+## Multiple CVs
+
+Each CV is a tab above the preview. Click a tab to open it, double-click it (or use the
+pencil on the right) to rename, and use the icons on the right to duplicate or delete the
+open CV. `+` adds a new CV from the default template. The sidebar, Save/Load JSON, Reset
+and Export PDF all work on the open CV. All tabs are auto-saved in localStorage; a CV saved
+by the old single-CV version is moved into the first tab automatically.
 
 ## How the page preview works
 
